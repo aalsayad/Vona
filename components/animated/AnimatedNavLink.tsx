@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "motion/react";
 import { useState } from "react";
+import { vonaEasing } from "@/Utils/animation";
 
 type AnimatedNavLinkProps = {
   text: string;
@@ -8,6 +9,8 @@ type AnimatedNavLinkProps = {
 
 const AnimatedNavLink = ({ text }: AnimatedNavLinkProps) => {
   const [linkHover, setLinkHover] = useState(false);
+
+  const duration = 0.25;
   return (
     <div
       onMouseEnter={() => setLinkHover(true)}
@@ -22,11 +25,8 @@ const AnimatedNavLink = ({ text }: AnimatedNavLinkProps) => {
           idle: { y: "0%" },
         }}
         transition={{
-          type: "spring",
-          stiffness: 400,
-          damping: 40,
-          mass: 1,
-          restDelta: 0.001,
+          duration: duration,
+          ease: vonaEasing,
         }}
         className="flex flex-col"
       >
@@ -36,7 +36,10 @@ const AnimatedNavLink = ({ text }: AnimatedNavLinkProps) => {
             hover: { opacity: 0 },
             idle: { opacity: 1 },
           }}
-          transition={{ duration: 0.15 }}
+          transition={{
+            duration: duration,
+            ease: vonaEasing,
+          }}
         >
           {text}
         </motion.div>
@@ -46,7 +49,10 @@ const AnimatedNavLink = ({ text }: AnimatedNavLinkProps) => {
             hover: { opacity: 1 },
             idle: { opacity: 0 },
           }}
-          transition={{ duration: 0.1 }}
+          transition={{
+            duration: duration,
+            ease: vonaEasing,
+          }}
         >
           {text}
         </motion.div>

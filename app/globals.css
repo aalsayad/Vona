@@ -28,6 +28,6 @@ body {
   }
 
   .mobile-nav-link {
-    @apply opacity-80 font-merchant font-extralight text-white hover:opacity-100 text-[24px] tracking-[0em];
+    @apply opacity-80 font-merchant font-extralight text-white hover:opacity-100 text-2xl tracking-[0em];
   }
 }
