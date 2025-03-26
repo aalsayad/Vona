@@ -9,6 +9,10 @@ type ServiceCardProps = {
   number: number;
   isActive: boolean;
   isPrevious: boolean;
+  isUserInteracting: boolean;
+  onHover: () => void;
+  onMouseLeave: () => void;
+  progress: number;
 };
 
 const ServiceCard = ({
@@ -16,19 +20,30 @@ const ServiceCard = ({
   number,
   isActive,
   isPrevious,
+  isUserInteracting,
+  onHover,
+  onMouseLeave,
+  progress,
 }: ServiceCardProps) => {
+  // Calculate the width for the orange bar
+  const barWidth = isActive ? (isUserInteracting ? 100 : progress * 100) : 0;
+
   return (
-    <div className="w-fit md:w-auto pr-[8px] md:pr-[14px] lg:pr-[16px]">
+    <div
+      className={`transition-opacity duration-300 ${
+        isUserInteracting && !isActive ? "opacity-30" : "opacity-100"
+      }`}
+      onMouseEnter={onHover}
+      onMouseLeave={onMouseLeave}
+    >
       {/* Orange Divider */}
       <motion.div
-        className="h-[1px] md:h-[1.25px] lg:h-[1.5px] bg-accent mt-[-2px] mb-[16px] md:mb-[20px] lg:mb-[24px]"
+        className="h-[1.5px] bg-accent mt-[-2px] mb-[24px]"
         initial={{ width: "0%" }}
-        animate={{
-          width: isActive ? "100%" : "0%",
-          transition: {
-            duration: isActive ? 10 : 0.5,
-            ease: isActive ? "linear" : vonaEasing,
-          },
+        animate={{ width: `${barWidth}%` }}
+        transition={{
+          duration: 0.35,
+          ease: isUserInteracting || !isActive ? vonaEasing : "linear",
         }}
       />
 

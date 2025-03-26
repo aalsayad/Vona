@@ -3,6 +3,7 @@ import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import localFont from "next/font/local";
 import Navbar from "@/components/Navbar";
+import { SmoothScroll } from "@/Utils/SmoothScroll";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -43,13 +44,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${spaceGrotesk.variable} ${merchant.variable} antialiased`}
-      >
-        <Navbar />
-        {children}
-      </body>
-    </html>
+    <SmoothScroll>
+      <html lang="en">
+        <body
+          className={`${spaceGrotesk.variable} ${merchant.variable} antialiased`}
+        >
+          <Navbar />
+          {children}
+        </body>
+      </html>
+    </SmoothScroll>
   );
 }
