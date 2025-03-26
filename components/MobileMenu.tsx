@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { vonaEasing } from "@/Utils/animation";
 import AnimatedMobileNavLink from "./animated/AnimatedMobileNavLink";
-import { NavItem } from "@/types/navigation";
+import { NavItem } from "@/types";
 
 type MobileMenuProps = {
   isMenuOpen: boolean;

@@ -8,7 +8,7 @@ import { motion } from "motion/react";
 import { vonaEasing } from "@/Utils/animation";
 import AnimatedNavLink from "./animated/AnimatedNavLink";
 import MobileMenu from "./MobileMenu";
-import { NavItem } from "@/types/navigation";
+import { NavItem } from "@/types";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
@@ -23,7 +23,7 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="w-full h-[64px] px-[24px] md:h-[64px] md:px-[32px] lg:h-[80px] lg:px-[40px] flex items-center justify-between mix-blend-difference fixed z-10">
+      <div className="w-full h-[64px] px-[16px] md:h-[64px] md:px-[32px] lg:h-[80px] lg:px-[40px] flex items-center justify-between mix-blend-difference fixed z-10">
         {/* Vona Logo */}
         <Image
           src={vonaLogoWhite}
