@@ -18,7 +18,7 @@ const MobileMenu = ({ isMenuOpen, navItems }: MobileMenuProps) => {
         duration: 0.8,
         ease: vonaEasing,
       }}
-      className="md:hidden bg-foreground text-background w-full h-[100dvh] px-[24px] py-[40px] pt-[calc(64px)] fixed top-[-100%] left-0 flex justify-end flex-col"
+      className="md:hidden bg-foreground text-background w-full h-[100dvh] px-[24px] py-[40px] pt-[calc(64px)] fixed top-[-100%] left-0 flex justify-end flex-col z-[998]"
     >
       {/* Nav Links */}
       <div className="flex flex-col gap-8">

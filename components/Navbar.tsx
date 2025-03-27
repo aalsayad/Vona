@@ -23,7 +23,7 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="w-full h-[64px] px-[16px] md:h-[64px] md:px-[32px] lg:h-[80px] lg:px-[40px] flex items-center justify-between mix-blend-difference fixed z-10">
+      <div className="w-full h-[64px] px-[16px] md:h-[64px] md:px-[32px] lg:h-[80px] lg:px-[40px] flex items-center justify-between mix-blend-difference fixed z-[999]">
         {/* Vona Logo */}
         <Image
           src={vonaLogoWhite}
