@@ -8,7 +8,7 @@ type ServiceCardProps = {
   service: Service;
   number: number;
   isActive: boolean;
-  isPrevious: boolean;
+
   isUserInteracting: boolean;
   onHover: () => void;
   onMouseLeave: () => void;
@@ -19,7 +19,6 @@ const ServiceCard = ({
   service,
   number,
   isActive,
-  isPrevious,
   isUserInteracting,
   onHover,
   onMouseLeave,
@@ -30,7 +29,7 @@ const ServiceCard = ({
 
   return (
     <div
-      className={`transition-opacity duration-300 ${
+      className={`transition-opacity duration-300 cursor-pointer ${
         isUserInteracting && !isActive ? "opacity-30" : "opacity-100"
       }`}
       onMouseEnter={onHover}
