@@ -35,15 +35,15 @@ const maskVariants = {
 
 const numberVariants = {
   enter: {
-    y: 60, // Start slightly below final position
+    y: 40, // Start slightly below final position
     opacity: 0,
   },
   visible: {
     y: 0,
     opacity: 1,
     transition: {
-      duration: 0.8,
-      delay: 0.4, // Small delay after image starts appearing
+      duration: 0.5,
+      delay: 0.6, // Small delay after image starts appearing
       ease: vonaEasing,
     },
   },
@@ -51,7 +51,7 @@ const numberVariants = {
     y: 20, // Move up when exiting
     opacity: 0,
     transition: {
-      duration: 0.5,
+      duration: 0.3,
       ease: vonaEasing,
     },
   },
@@ -71,7 +71,7 @@ const IMAGES = [
     alt: "Web Design",
     position: {
       mobile: { top: "15%", left: "10%" },
-      desktop: { top: "15%", left: "45%" },
+      desktop: { top: "5%", left: "45%" },
     },
   },
   {
@@ -121,7 +121,7 @@ export default function HeroImages({ activeIndex }: HeroImagesProps) {
                 style={{
                   top: top,
                   left: left,
-                  maxHeight: "75%",
+                  maxHeight: "85%",
 
                   // backgroundColor: "#f0f0f0",
                 }}

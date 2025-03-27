@@ -65,7 +65,12 @@ const ServiceCard = ({
       {/* Subservices */}
       <div className="flex flex-col gap-[3px] md:gap-[3.5px] lg:gap-[4px]">
         {service.subServices.map((subService) => (
-          <SubServiceItem key={subService.id} subService={subService} />
+          <SubServiceItem
+            fixedIdWidth
+            key={subService.id}
+            subService={subService}
+            hideId
+          />
         ))}
       </div>
     </div>
