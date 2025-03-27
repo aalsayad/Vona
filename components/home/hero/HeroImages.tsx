@@ -35,18 +35,21 @@ const maskVariants = {
 
 const numberVariants = {
   enter: {
-    y: 20, // Start slightly below final position
+    y: 60, // Start slightly below final position
+    opacity: 0,
   },
   visible: {
     y: 0,
+    opacity: 1,
     transition: {
-      duration: 0.5,
-      delay: 0.6, // Small delay after image starts appearing
+      duration: 0.8,
+      delay: 0.4, // Small delay after image starts appearing
       ease: vonaEasing,
     },
   },
   exit: {
     y: 20, // Move up when exiting
+    opacity: 0,
     transition: {
       duration: 0.5,
       ease: vonaEasing,
