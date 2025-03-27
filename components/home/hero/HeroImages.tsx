@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "motion/react";
 import { vonaEasing } from "@/Utils/animation";
+import brandingImg from "@/public/images/photos/branding.webp";
+import webdesignImg from "@/public/images/photos/webdesign.webp";
+import webdevImg from "@/public/images/photos/webdev.webp";
 
 type ImageItem = {
   src: string;
@@ -18,22 +21,42 @@ type HeroImagesProps = {
 
 const maskVariants = {
   enter: {
-    clipPath: "inset(0 0 0 100%)",
-    transition: { duration: 1, ease: vonaEasing },
+    clipPath: "inset(-20% 0 -20% 100%)",
   },
   visible: {
-    clipPath: "inset(0 0 0 0)",
+    clipPath: "inset(-20% 0 -20% 0)",
     transition: { duration: 1, ease: vonaEasing },
   },
   exit: {
-    clipPath: "inset(0 100% 0 0)",
+    clipPath: "inset(-20% 100% -20% 0)",
     transition: { duration: 0.5, ease: vonaEasing },
+  },
+};
+
+const numberVariants = {
+  enter: {
+    y: 20, // Start slightly below final position
+  },
+  visible: {
+    y: 0,
+    transition: {
+      duration: 0.5,
+      delay: 0.6, // Small delay after image starts appearing
+      ease: vonaEasing,
+    },
+  },
+  exit: {
+    y: 20, // Move up when exiting
+    transition: {
+      duration: 0.5,
+      ease: vonaEasing,
+    },
   },
 };
 
 const IMAGES = [
   {
-    src: "https://images.unsplash.com/photo-1742654230443-7c19cb55cd46?q=80&w=3542&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    src: brandingImg,
     alt: "Branding",
     position: {
       mobile: { top: "25%", left: "5%" },
@@ -41,15 +64,15 @@ const IMAGES = [
     },
   },
   {
-    src: "https://images.unsplash.com/photo-1741619215920-1db7baf88f6e?q=80&w=3464&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    src: webdesignImg,
     alt: "Web Design",
     position: {
-      mobile: { top: "10%", left: "10%" },
+      mobile: { top: "15%", left: "10%" },
       desktop: { top: "15%", left: "45%" },
     },
   },
   {
-    src: "https://images.unsplash.com/photo-1741807083060-39c641cd97fa?q=80&w=3472&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    src: webdevImg,
     alt: "Web Development",
     position: {
       mobile: { top: "35%", left: "5%" },
@@ -78,47 +101,81 @@ export default function HeroImages({ activeIndex }: HeroImagesProps) {
   const isMobile = useIsMobile();
 
   return (
-    <div className="relative w-full h-full overflow-hidden">
+    <div className="relative w-full h-full">
       <AnimatePresence mode="sync">
         {IMAGES.map((image, index) => {
-          // Only render the active image
-          if (index !== activeIndex) return null;
           // Decide which position to use
           const { top, left } = isMobile
             ? image.position.mobile
             : image.position.desktop;
 
+          // Only animate and show the active image, but keep all rendered
+          if (index === activeIndex) {
+            return (
+              <motion.div
+                key={index}
+                className="absolute inset-0"
+                style={{
+                  top: top,
+                  left: left,
+                  maxHeight: "75%",
+
+                  // backgroundColor: "#f0f0f0",
+                }}
+                initial="enter"
+                animate="visible"
+                exit="exit"
+                variants={maskVariants}
+              >
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  style={{
+                    width: "auto",
+                    height: "auto",
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    objectFit: "contain",
+                    position: "relative",
+                  }}
+                  // Optional: add blur while loading
+                  placeholder="blur"
+                />
+                <motion.span
+                  variants={numberVariants}
+                  className="absolute -top-3.5 lg:-top-5 left-0 text-[10px] lg:text-xs text-accent -z-[1]"
+                >
+                  [0{index + 1}]
+                </motion.span>
+              </motion.div>
+            );
+          }
+          // Add this to pre-render all other images but keep them hidden
           return (
-            <motion.div
-              key={index}
-              className={`
-            absolute inset-0`}
+            <div
+              key={`preload-${index}`}
               style={{
-                top: top,
-                left: left,
-                maxHeight: "75%",
+                position: "absolute",
+                opacity: 0,
+                pointerEvents: "none",
+                zIndex: -1,
+                width: 1, // Very small but still rendered
+                height: 1,
+                overflow: "hidden",
               }}
-              initial="enter"
-              animate="visible"
-              exit="exit"
-              variants={maskVariants}
             >
               <Image
                 src={image.src}
-                alt={image.alt}
-                width={0} // Let the image use its natural width
-                height={0} // Let the image use its natural height
-                sizes="100vw" // Ensure proper scaling for responsive layouts
-                style={{
-                  width: "auto", // Use natural width
-                  height: "auto", // Use natural height
-                  // minWidth: "70%",
-                  maxWidth: "100%", // Constrain to the parent's max-height (75%)
-                  maxHeight: "100%", // Constrain to the parent's max-height (75%)
-                  objectFit: "contain", // Maintain aspect ratio, fit within bounds
-                }}
+                alt={`Preload ${image.alt}`}
+                width={0}
+                height={0}
+                priority={index === (activeIndex + 1) % IMAGES.length} // Prioritize next image
+                sizes="100vw"
               />
-            </motion.div>
+            </div>
           );
         })}
       </AnimatePresence>
