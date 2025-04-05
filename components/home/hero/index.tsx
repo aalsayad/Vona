@@ -77,7 +77,10 @@ const HomeHero = () => {
   }, [activeIndex]);
 
   return (
-    <div className="w-full h-[100dvh] flex flex-col p-[16px] md:p-[32px] lg:p-[40px] lg:pt-[80px]">
+    <div
+      id="services"
+      className="w-full h-[100svh] flex flex-col p-[16px] md:p-[32px] lg:p-[40px] lg:pt-[80px]"
+    >
       <div className="w-full h-full bg-background">
         <HeroImages activeIndex={activeIndex} />
       </div>

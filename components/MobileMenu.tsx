@@ -7,9 +7,14 @@ import { NavItem } from "@/types";
 type MobileMenuProps = {
   isMenuOpen: boolean;
   navItems: NavItem[];
+  setIsMenuOpen: (isMenuOpen: boolean) => void;
 };
 
-const MobileMenu = ({ isMenuOpen, navItems }: MobileMenuProps) => {
+const MobileMenu = ({
+  isMenuOpen,
+  navItems,
+  setIsMenuOpen,
+}: MobileMenuProps) => {
   return (
     <motion.div
       initial={{ top: "-100%" }}
@@ -23,13 +28,14 @@ const MobileMenu = ({ isMenuOpen, navItems }: MobileMenuProps) => {
       {/* Nav Links */}
       <div className="flex flex-col gap-8">
         {navItems.map((item, index) => (
-          <AnimatedMobileNavLink
-            key={index}
-            text={item.text}
-            href={item.href}
-            index={index}
-            isMenuOpen={isMenuOpen}
-          />
+          <div onClick={() => setIsMenuOpen(false)} key={index}>
+            <AnimatedMobileNavLink
+              text={item.text}
+              href={item.href}
+              index={index}
+              isMenuOpen={isMenuOpen}
+            />
+          </div>
         ))}
       </div>
       {/* Divider */}

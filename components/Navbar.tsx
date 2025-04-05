@@ -15,10 +15,10 @@ export default function Navbar() {
 
   // Single source of truth for navigation items
   const navigationItems: NavItem[] = [
-    { text: "Services", href: "/#hero" },
+    { text: "Services", href: "/#services" },
     { text: "Work", href: "/#work" },
     { text: "Contact", href: "/#contact" },
-    { text: "Start a Project", href: "/#contact" },
+    { text: "Start a Project", href: "/#project" },
   ];
 
   return (
@@ -70,7 +70,11 @@ export default function Navbar() {
       </div>
 
       {/* Full screen Mobile Menu */}
-      <MobileMenu isMenuOpen={isMenuOpen} navItems={navigationItems} />
+      <MobileMenu
+        isMenuOpen={isMenuOpen}
+        setIsMenuOpen={setIsMenuOpen}
+        navItems={navigationItems}
+      />
     </>
   );
 }

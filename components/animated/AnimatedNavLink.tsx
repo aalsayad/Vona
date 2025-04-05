@@ -5,9 +5,10 @@ import { vonaEasing } from "@/Utils/animation";
 
 type AnimatedNavLinkProps = {
   text: string;
+  className?: string;
 };
 
-const AnimatedNavLink = ({ text }: AnimatedNavLinkProps) => {
+const AnimatedNavLink = ({ text, className }: AnimatedNavLinkProps) => {
   const [linkHover, setLinkHover] = useState(false);
 
   const duration = 0.25;
@@ -15,7 +16,7 @@ const AnimatedNavLink = ({ text }: AnimatedNavLinkProps) => {
     <div
       onMouseEnter={() => setLinkHover(true)}
       onMouseLeave={() => setLinkHover(false)}
-      className="h-[1.5em] relative overflow-hidden"
+      className={`h-[1.5em] relative overflow-hidden ${className}`}
     >
       <motion.div
         animate={linkHover ? "hover" : "idle"}
