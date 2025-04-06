@@ -8,11 +8,12 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function ProjectPage({
-  params,
-}: {
+type Props = {
   params: { slug: string };
-}) {
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export default async function ProjectPage({ params }: Props) {
   // Use async/await pattern with server components
   const project = projects.find((p) => p.slug === params.slug);
 
