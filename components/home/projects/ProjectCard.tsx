@@ -1,11 +1,13 @@
 import { SubService } from "@/types";
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import SubServiceItem from "../hero/SubServiceItem";
 import { StaticImageData } from "next/image";
 import Button from "@/components/Button";
 import { cn } from "@/Utils/cn";
 import VisitProjectButton from "./VisitProjectButton";
+
 type projectProps = {
   index: number;
   activeIndex: number | null;
@@ -15,6 +17,7 @@ type projectProps = {
   description: string;
   tags: SubService[];
   images: StaticImageData[];
+  slug: string;
 };
 
 const ProjectCard = ({
@@ -26,9 +29,10 @@ const ProjectCard = ({
   title,
   description,
   images,
+  slug,
 }: projectProps) => {
   return (
-    <div>
+    <Link href={`/project/${slug}`}>
       <div
         key={id}
         className={cn(
@@ -90,7 +94,7 @@ const ProjectCard = ({
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

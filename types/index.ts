@@ -25,6 +25,9 @@ export type ProjectTag = {
 export type Project = {
   id: string;
   title: string;
+  subtitle: string;
+  visitLink?: string;
+  slug: string;
   tags: ProjectTag[];
   description: string;
   images: StaticImageData[];

@@ -4,6 +4,7 @@ import "./globals.css";
 import localFont from "next/font/local";
 import Navbar from "@/components/Navbar";
 import { SmoothScroll } from "@/Utils/SmoothScroll";
+import Footer from "@/components/home/footer/Footer";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -51,6 +52,13 @@ export default function RootLayout({
         >
           <Navbar />
           {children}
+          {/* MultiColor Spacer */}
+          <div className="w-full h-[120px] md:h-[160px] lg:h-[240px] border-[0px] border-accent/0">
+            <div className="w-full h-1/2 bg-background"></div>
+            <div id="project" className="w-full h-1/2 bg-foreground"></div>
+          </div>
+          {/* Footer */}
+          <Footer />
         </body>
       </html>
     </SmoothScroll>

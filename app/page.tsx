@@ -13,13 +13,6 @@ export default function Home() {
       />
       {/* Projects */}
       <ProjectsSection />
-      {/* MultiColor Spacer */}
-      <div className="w-full h-[120px] md:h-[160px] lg:h-[240px] border-[0px] border-accent/0">
-        <div className="w-full h-1/2 bg-background"></div>
-        <div id="project" className="w-full h-1/2 bg-foreground"></div>
-      </div>
-      {/* Footer */}
-      <Footer />
     </div>
   );
 }

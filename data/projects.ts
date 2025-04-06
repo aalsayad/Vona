@@ -18,6 +18,8 @@ export const projects: Project[] = [
   {
     id: "01",
     title: "Carza",
+    subtitle: "People-first automotive app for Carza",
+    slug: "carza",
     tags: [
       { id: "01", letter: "A", title: "Brand Strategy" },
       { id: "01", letter: "B", title: "Identity Design" },
@@ -29,6 +31,8 @@ export const projects: Project[] = [
   {
     id: "02",
     title: "Mualimi",
+    subtitle: "People-first automotive app for Mualimi",
+    slug: "mualimi",
     tags: [
       { id: "01", letter: "A", title: "Brand Strategy" },
       { id: "01", letter: "B", title: "Identity Design" },
@@ -40,6 +44,8 @@ export const projects: Project[] = [
   {
     id: "03",
     title: "Mushar",
+    subtitle: "People-first automotive app for Mushar",
+    slug: "mushar",
     tags: [
       { id: "02", letter: "B", title: "Multi-Page Website Design" },
       { id: "03", letter: "A", title: "Framer Development" },

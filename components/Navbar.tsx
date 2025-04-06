@@ -17,19 +17,21 @@ export default function Navbar() {
   const navigationItems: NavItem[] = [
     { text: "Services", href: "/#services" },
     { text: "Work", href: "/#work" },
-    { text: "Contact", href: "/#contact" },
-    { text: "Start a Project", href: "/#project" },
+    { text: "Contact", href: "#contact" },
+    { text: "Start a Project", href: "#project" },
   ];
 
   return (
     <>
       <div className="w-full h-[64px] px-[16px] md:h-[64px] md:px-[32px] lg:h-[80px] lg:px-[40px] flex items-center justify-between mix-blend-difference fixed z-[999]">
         {/* Vona Logo */}
-        <Image
-          src={vonaLogoWhite}
-          alt="Vona Logo"
-          className="w-[96px] lg:w-[100px]"
-        />
+        <Link href="/">
+          <Image
+            src={vonaLogoWhite}
+            alt="Vona Logo"
+            className="w-[96px] lg:w-[100px]"
+          />
+        </Link>
 
         {/* Navbar Links - Desktop */}
         <div className="hidden md:flex items-center gap-5">
