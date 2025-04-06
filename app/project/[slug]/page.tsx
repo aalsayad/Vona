@@ -8,14 +8,15 @@ export async function generateStaticParams() {
   }));
 }
 
-type Props = {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
+export default async function ProjectPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  // Since params is now a Promise in Next.js 15, we need to await it
+  const { slug } = await params;
 
-export default async function ProjectPage({ params }: Props) {
-  // Use async/await pattern with server components
-  const project = projects.find((p) => p.slug === params.slug);
+  const project = projects.find((p) => p.slug === slug);
 
   if (!project) {
     return notFound();
