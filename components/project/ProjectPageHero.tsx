@@ -6,7 +6,7 @@ import { projects } from "@/data/projects";
 const ProjectPageHero = ({ project }: { project: Project }) => {
   return (
     <div className="w-full flex flex-col items-center p-[16px] md:p-[32px] lg:p-[40px] lg:pt-[80px]">
-      <div className="max-w-[1100px] w-full pt-[160px] pb-[40px]">
+      <div className="max-w-[1100px] w-full pt-[96px] lg:pt-[160px] pb-[40px]">
         {/* Project Header Number */}
         <div className="w-full flex items-center justify-end text-[10px] md:text-[11px] lg:text-[12px] text-accent">
           [{project.id} / 0{projects.length}]
@@ -34,7 +34,7 @@ const ProjectPageHero = ({ project }: { project: Project }) => {
               <p className="projectpage-description-title mb-[8px] lg:text-[16px] font-medium">
                 Project Scope
               </p>
-              <div className="space-y-[2px]">
+              <div className="gap-[8px] lg:gap-[2px] flex flex-wraplg:flex-col">
                 {project.tags.map((tag, index) => (
                   <SubServiceItem key={index} subService={tag} />
                 ))}

@@ -1,15 +1,17 @@
-"use client";
+"use client"; // This is a Client Component hook
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { useLenis } from "lenis/react";
 
 export function useScrollToTop() {
-  const lenis = useLenis();
+  const pathname = usePathname(); // Track route changes
+  const lenis = useLenis(); // Access Lenis instance
 
   useEffect(() => {
-    // Scroll to top when component mounts
     if (lenis) {
-      lenis.scrollTo(0, { immediate: true });
+      lenis.scrollTo(0, { immediate: true }); // Scroll to top instantly
+      // Or use { duration: 0.5 } for smooth scrolling
     }
-  }, [lenis]);
+  }, [pathname, lenis]);
 }

@@ -30,7 +30,7 @@ const SubServiceItem = ({
         <span>/</span>
         <span>{subService.letter}</span>
       </div>
-      <p className="opacity-90 text-[11px] md:text-[13.5px] lg:text-[14px] font-light">
+      <p className="opacity-90 text-[11px] md:text-[13.5px] lg:text-[14px] font-light text-nowrap">
         {subService.title}
       </p>
     </div>

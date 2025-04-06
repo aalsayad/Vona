@@ -22,5 +22,12 @@ export default async function ProjectPage({
     return notFound();
   }
 
-  return <ProjectDisplay project={project} />;
+  // Find the current project index
+  const currentIndex = projects.findIndex((p) => p.slug === slug);
+
+  // Get the next project (or loop back to the first if it's the last project)
+  const nextIndex = (currentIndex + 1) % projects.length;
+  const nextProject = projects[nextIndex];
+
+  return <ProjectDisplay project={project} nextProject={nextProject} />;
 }

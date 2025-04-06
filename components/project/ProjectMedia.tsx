@@ -10,15 +10,15 @@ const ProjectMedia = ({ project }: { project: Project }) => {
 
     // Wide images (close to 16:9 ratio)
     if (aspectRatio >= 1.6) {
-      return "col-span-4";
+      return "md:col-span-4";
     }
     // Square or slightly portrait images (close to 1:1 or 4:5 ratio)
     else if (aspectRatio >= 0.7) {
-      return "col-span-2";
+      return "md:col-span-2";
     }
     // Tall portrait images (close to 9:16 ratio)
     else {
-      return "col-span-1";
+      return "md:col-span-1";
     }
   };
 
@@ -42,11 +42,13 @@ const ProjectMedia = ({ project }: { project: Project }) => {
   return (
     <div className="w-full flex flex-col items-center p-[16px] md:p-[32px] lg:p-[40px] lg:pt-[80px]">
       <div className="w-full max-w-[1100px]">
-        <div className="grid grid-cols-4 gap-[24px]">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-[24px]">
           {project.images.map((image, index) => (
             <div
               key={index}
-              className={`w-full h-full ${getColSpan(image)} flex flex-col`}
+              className={`w-full h-full col-span-1 ${getColSpan(
+                image
+              )} flex flex-col`}
             >
               <Image
                 src={image}

@@ -32,7 +32,7 @@ const ProjectCard = ({
   slug,
 }: projectProps) => {
   return (
-    <Link href={`/project/${slug}`}>
+    <Link scroll={false} href={`/project/${slug}`}>
       <div
         key={id}
         className={cn(

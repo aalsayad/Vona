@@ -41,7 +41,7 @@ const HomeHero = () => {
           const currentIndex = activeIndexRef.current;
           const nextIndex = (currentIndex + 1) % services.length;
 
-          console.log(`Cycling from ${currentIndex} to ${nextIndex}`);
+          // console.log(`Cycling from ${currentIndex} to ${nextIndex}`);
           setActiveIndex(nextIndex);
 
           // Reset progress
@@ -71,10 +71,10 @@ const HomeHero = () => {
     setIsUserInteracting(false);
   };
 
-  // Debug log to track active index changes
-  useEffect(() => {
-    console.log("Active Index:", activeIndex);
-  }, [activeIndex]);
+  // // Debug log to track active index changes
+  // useEffect(() => {
+  //   console.log("Active Index:", activeIndex);
+  // }, [activeIndex]);
 
   return (
     <div
