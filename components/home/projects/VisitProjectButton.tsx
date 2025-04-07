@@ -11,7 +11,7 @@ const VisitProjectButton = ({ active }: { active: boolean }) => {
         clipPath: active ? "inset(0 0 0 0)" : "inset(0 100% 0 0)",
       }}
       transition={{ duration: 0.4, ease: vonaEasing }}
-      className="relative md:py-[8px] md:px-[12px] lg:py-[8px] lg:px-[16px] w-fit text-accent bg-accent/5 hidden md:block"
+      className="relative md:py-[3px] md:px-[10px] lg:py-[4px] lg:px-[12px] w-fit text-accent bg-accent/5 hidden md:block text-xs md:text-sm"
     >
       <motion.div
         animate={{

@@ -1,6 +1,7 @@
 import React from "react";
 import { Project } from "@/types";
 import Image from "next/image";
+import AnimatedImage from "../animated/AnimatedImage";
 
 const ProjectMedia = ({ project }: { project: Project }) => {
   // Function to determine column span based on image dimensions
@@ -50,11 +51,24 @@ const ProjectMedia = ({ project }: { project: Project }) => {
                 image
               )} flex flex-col`}
             >
-              <Image
-                src={image}
-                alt={project.title}
-                className="w-full h-auto"
-              />
+              {/* Only use AnimatedImage for first three images */}
+              {index < 2 ? (
+                <AnimatedImage
+                  src={image}
+                  alt={project.title}
+                  className="w-full h-auto"
+                  direction="down"
+                  duration={1.5}
+                  delay={0.2 * index + 0.3}
+                />
+              ) : (
+                <Image
+                  src={image}
+                  alt={project.title}
+                  className="w-full h-auto"
+                />
+              )}
+
               <div className="text-accent text-[10px] md:text-[12px] lg:text-[13px] pt-[8px]">
                 [{getFileName(image)}]
               </div>

@@ -4,6 +4,7 @@ import HeroHeading from "./HeroHeading";
 import ServicesSection from "./ServicesSection";
 import { services } from "@/data/services";
 import HeroImages from "./HeroImages";
+import AnimatedDivider from "@/components/animated/AnimatedDivider";
 
 const HomeHero = () => {
   // State for tracking which service card is active
@@ -89,7 +90,9 @@ const HomeHero = () => {
         <HeroHeading />
 
         {/* Divider */}
-        <div className="w-full h-[1px] bg-foreground/10 mt-[32px] lg:mt-[40px]"></div>
+        <div className="w-full h-[1px] mt-[32px] lg:mt-[40px]">
+          <AnimatedDivider height={1} />
+        </div>
 
         {/* Services Section */}
         <ServicesSection

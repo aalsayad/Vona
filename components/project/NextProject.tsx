@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import Image from "next/image";
 import VisitProjectButton from "../home/projects/VisitProjectButton";
 import Link from "next/link";
+import AnimatedSentence from "../animated/AnimatedSentence";
+import AnimatedDivider from "../animated/AnimatedDivider";
+
 const NextProject = ({ project }: { project: Project }) => {
   const [hover, setHover] = useState(false);
   return (
@@ -11,18 +14,21 @@ const NextProject = ({ project }: { project: Project }) => {
         <div className="w-full max-w-[1100px]">
           <div className="w-full flex flex-col gap-[16px] md:gap-[24px]">
             {/* Divider */}
-            <div className="w-full h-[1px] bg-foreground/10" />
+            {/* <div className="w-full h-[1px] bg-foreground/10" /> */}
+            <AnimatedDivider height={1} />
             {/* Title + Next PRoject Card */}
             <div className="w-full flex flex-col md:flex-row space-between items-start">
               {/* Title */}
-              <h2 className="font-merchant leading-[1] text-[24px] lg:text-[32px] font-extralight w-full">
-                Explore Next Project
-              </h2>
+              <AnimatedSentence
+                text="Explore Next Project"
+                direction="down"
+                className="font-merchant leading-[1] text-[24px] lg:text-[32px] font-extralight w-full"
+              />
 
               {/* Project */}
               <Link
                 href={`/project/${project.slug}`}
-                className="w-fit flex flex-col gap-[32px] max-w-full mt-[32px] md:max-w-[50%] lg:max-w-[40%] cursor-pointer"
+                className="w-fit flex flex-col gap-[8px] lg:gap-[16px] max-w-full md:mt-0 mt-[32px] md:max-w-[50%] lg:max-w-[350px] cursor-pointer"
                 onMouseEnter={() => setHover(true)}
                 onMouseLeave={() => setHover(false)}
               >
@@ -32,7 +38,7 @@ const NextProject = ({ project }: { project: Project }) => {
                   alt={project.title}
                   width={100}
                   height={100}
-                  className="w-fit h-[300px] object-contain"
+                  className="w-full h-[250px] object-cover"
                 />
 
                 {/* Project Details */}
@@ -45,7 +51,7 @@ const NextProject = ({ project }: { project: Project }) => {
                         <div className="inline-block">/</div>
                         <span>0{project.tags.length + 1}]</span>
                       </div>
-                      <h3 className="text-[22px] lg:text-[26px] font-medium leading-[0.9]">
+                      <h3 className="text-[20px] lg:text-[24px] font-medium leading-[0.9]">
                         {project.title}
                       </h3>
                     </div>
