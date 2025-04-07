@@ -12,7 +12,7 @@ const FooterLinks = [
     links: [
       {
         title: "PMGP+9F6, Al Wurud, Riyadh 12252, Saudi Arabia",
-        url: "https://goo.gl/maps/1234567890",
+        url: "https://g.co/kgs/XnP3xvd",
         animate: false,
       },
     ],
@@ -22,12 +22,12 @@ const FooterLinks = [
     links: [
       {
         title: "X.com",
-        url: "https://www.x.com/vona_studio",
+        url: "https://www.linkedin.com/company/vonadesign",
         animate: true,
       },
       {
         title: "LinkedIn",
-        url: "https://www.linkedin.com/company/vona-studio",
+        url: "https://www.linkedin.com/company/vonadesign",
         animate: true,
       },
     ],
@@ -36,8 +36,8 @@ const FooterLinks = [
     title: "Business Inquiries",
     links: [
       {
-        title: "hello@vona.sa",
-        url: "mailto:hello@vona.sa",
+        title: "contact@vona.sa",
+        url: "mailto:contact@vona.sa",
         animate: true,
       },
     ],
@@ -47,7 +47,7 @@ const FooterLinks = [
     links: [
       {
         title: "careers@vona.sa",
-        url: "mailto:careers@vona.sa",
+        url: "mailto:contact@vona.sa",
         animate: true,
       },
     ],
@@ -97,6 +97,7 @@ const Footer = () => {
                 <Link
                   href={link.url}
                   key={link.title}
+                  target="_blank"
                   className=" opacity-50 hover:opacity-100 transition-opacity duration-300 text-[14px] lg:text-[16px] leading-[1.5]"
                 >
                   {link.animate ? (
