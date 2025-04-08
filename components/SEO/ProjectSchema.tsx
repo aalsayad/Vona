@@ -20,7 +20,7 @@ export default function ProjectSchema({ project }: ProjectSchemaProps) {
       url: "https://www.vona.agency",
     },
     url: `https://www.vona.agency/project/${project.slug}`,
-    image: project.images?.[0] ? project.images[0].src : undefined,
+    image: project.media?.[0] ? project.media[0].src : undefined,
     keywords: project.tags?.map((tag) => tag.title).join(", "),
     genre: project.tags?.[0]?.title || "Design",
   };
