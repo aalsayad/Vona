@@ -30,5 +30,10 @@ export type Project = {
   slug: string;
   tags: ProjectTag[];
   description: string;
-  images: StaticImageData[];
+  media: {
+    type: "image" | "video";
+    src: StaticImageData | string;
+  }[];
+  locked?: boolean;
+  externalLink?: string;
 };

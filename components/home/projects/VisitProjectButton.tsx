@@ -3,8 +3,16 @@
 import React from "react";
 import { motion } from "motion/react";
 import { vonaEasing } from "@/Utils/animation";
+import Link from "next/link";
 
-const VisitProjectButton = ({ active }: { active: boolean }) => {
+const VisitProjectButton = ({
+  active,
+  locked,
+}: {
+  active: boolean;
+  locked: boolean;
+  externalLink: string;
+}) => {
   return (
     <motion.div
       animate={{
@@ -20,7 +28,7 @@ const VisitProjectButton = ({ active }: { active: boolean }) => {
         transition={{ duration: 0.3, ease: vonaEasing, delay: 0.2 }}
         className="absolute top-0 left-0 h-full w-full bg-accent/5"
       />
-      Visit Project
+      {locked ? "Visit Project" : "Read Case Study"}
     </motion.div>
   );
 };

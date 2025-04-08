@@ -27,19 +27,43 @@ const NextProject = ({ project }: { project: Project }) => {
 
               {/* Project */}
               <Link
-                href={`/project/${project.slug}`}
+                target={
+                  project.locked && project.externalLink ? "_blank" : "_self"
+                }
+                href={
+                  project.locked && project.externalLink
+                    ? project.externalLink
+                    : `/project/${project.slug}`
+                }
                 className="w-fit flex flex-col gap-[8px] lg:gap-[16px] max-w-full md:mt-0 mt-[32px] md:max-w-[50%] lg:max-w-[350px] cursor-pointer"
                 onMouseEnter={() => setHover(true)}
                 onMouseLeave={() => setHover(false)}
               >
                 {/* Project Thumbnail */}
-                <Image
-                  src={project.images[0]}
-                  alt={project.title}
-                  width={100}
-                  height={100}
-                  className="w-full h-[250px] object-cover"
-                />
+                {project.media[0].type === "image" ? (
+                  <Image
+                    src={project.media[0].src}
+                    alt={project.title}
+                    width={100}
+                    height={100}
+                    className="w-full h-[250px] object-cover"
+                  />
+                ) : (
+                  <video
+                    src={
+                      typeof project.media[0].src === "string"
+                        ? project.media[0].src
+                        : project.media[0].src.src
+                    }
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    disablePictureInPicture
+                    controls={false}
+                    className="w-full h-auto"
+                  />
+                )}
 
                 {/* Project Details */}
                 <div className="space-y-[8px]">
@@ -56,7 +80,11 @@ const NextProject = ({ project }: { project: Project }) => {
                       </h3>
                     </div>
                     {/* Visit Project Button */}
-                    <VisitProjectButton active={hover} />
+                    <VisitProjectButton
+                      active={hover}
+                      locked={project.locked || false}
+                      externalLink={project.externalLink || ""}
+                    />
                   </div>
                   {/* Project Description */}
                   <p className="text-[12px] md:text-[13px] lg:text-[14px] leading-[1.2] lg:leading-[1.3] opacity-80 max-w-[85%]">

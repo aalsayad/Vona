@@ -7,6 +7,7 @@ import { StaticImageData } from "next/image";
 import Button from "@/components/Button";
 import { cn } from "@/Utils/cn";
 import VisitProjectButton from "./VisitProjectButton";
+import AnimatedMedia from "@/components/animated/AnimatedMedia";
 
 type projectProps = {
   index: number;
@@ -16,8 +17,13 @@ type projectProps = {
   title: string;
   description: string;
   tags: SubService[];
-  images: StaticImageData[];
+  media: {
+    type: "image" | "video";
+    src: StaticImageData | string;
+  }[];
   slug: string;
+  locked?: boolean;
+  externalLink?: string;
 };
 
 const ProjectCard = ({
@@ -28,11 +34,17 @@ const ProjectCard = ({
   tags,
   title,
   description,
-  images,
+  media,
   slug,
+  locked,
+  externalLink,
 }: projectProps) => {
   return (
-    <Link scroll={false} href={`/project/${slug}`}>
+    <Link
+      scroll={false}
+      target={locked && externalLink ? "_blank" : "_self"}
+      href={locked && externalLink ? externalLink : `/project/${slug}`}
+    >
       <div
         key={id}
         className={cn(
@@ -75,19 +87,26 @@ const ProjectCard = ({
 
             {/* Visit Project Button */}
             <div className="mt-[24px]">
-              <VisitProjectButton active={activeIndex === index} />
+              <VisitProjectButton
+                locked={locked || false}
+                externalLink={externalLink || ""}
+                active={activeIndex === index}
+              />
             </div>
           </div>
 
-          {/* Project Images */}
+          {/* Project Media */}
           <div className="w-full flex gap-[8px] mt-[40px] md:mt-0">
-            {images.map((image, index) => (
-              <div key={index} className=" w-full">
-                <Image
-                  src={image}
-                  alt={`${title} image ${index + 1}`}
+            {media.slice(0, 3).map((item, index) => (
+              <div key={index} className="w-full">
+                <AnimatedMedia
+                  src={item.src}
+                  alt={`${title} ${item.type} ${index + 1}`}
                   className="w-full h-auto object-cover"
-                  placeholder="blur"
+                  direction="down"
+                  duration={0.8}
+                  delay={0.1 * index}
+                  mediaType={item.type}
                 />
               </div>
             ))}

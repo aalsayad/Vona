@@ -5,6 +5,7 @@ import localFont from "next/font/local";
 import Navbar from "@/components/Navbar";
 import { SmoothScroll } from "@/Utils/SmoothScroll";
 import Footer from "@/components/home/footer/Footer";
+import OrganizationSchema from "@/components/SEO/OrganizationSchema";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -34,9 +35,28 @@ const merchant = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Vona",
+  title: "Vona | Creative Design Agency in Riyadh",
   description:
-    "Vona is a creative studio that designs for brands that refuse to blend in",
+    "Vona is a leading creative agency in Riyadh specializing in branding, web design, and web development. We create distinctive brand identities, stunning websites, and custom development solutions using Framer, Webflow, and Next.js.",
+  keywords:
+    "Vona, creative agency Riyadh, brand strategy, identity design, web design, landing pages, Framer development, Webflow development, Next.js development",
+  openGraph: {
+    title: "Vona | Creative Design Agency in Riyadh",
+    description:
+      "Vona is a leading creative agency in Riyadh specializing in branding, web design, and web development.",
+    url: "https://www.vona.agency", // Update with your actual domain
+    siteName: "Vona Creative Agency",
+    locale: "en_US",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  metadataBase: new URL("https://www.vona.agency"), // Update with your actual domain
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function RootLayout({
@@ -50,6 +70,7 @@ export default function RootLayout({
         <body
           className={`${spaceGrotesk.variable} ${merchant.variable} antialiased`}
         >
+          <OrganizationSchema />
           <Navbar />
           {children}
           {/* MultiColor Spacer */}

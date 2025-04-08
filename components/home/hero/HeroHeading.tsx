@@ -2,7 +2,7 @@ import React from "react";
 import AnimatedSentence from "@/components/animated/AnimatedSentence";
 const HeroHeading = () => {
   return (
-    <div className="w-[80vw]">
+    <div className="w-full md:w-[85vw] lg:w-[65vw]">
       <AnimatedSentence
         lineHeight={1}
         duration={0.8}

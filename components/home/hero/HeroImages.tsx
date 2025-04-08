@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { motion, AnimatePresence } from "motion/react";
 import { vonaEasing } from "@/Utils/animation";
+const brandingVideo = "/images/projects/carza/Carza-Logo_animation.mp4";
 import brandingImg from "@/public/images/photos/branding.webp";
-import webdesignImg from "@/public/images/photos/webdesign.webp";
-import webdevImg from "@/public/images/photos/webdev.webp";
+import webdesignImg from "@/public/images/projects/mushar/mushar_phone.webp";
+import webdevImg from "@/public/images/projects/mushar/mushar_laptop.webp";
 
-type ImageItem = {
-  src: string;
+type MediaItem = {
+  src: string | StaticImageData;
   alt: string;
+  type: "image" | "video";
   position: {
     mobile: { top: string; left: string };
     desktop: { top: string; left: string };
@@ -57,10 +59,11 @@ const numberVariants = {
   },
 };
 
-const IMAGES = [
+const IMAGES: MediaItem[] = [
   {
-    src: brandingImg,
+    src: brandingVideo,
     alt: "Branding",
+    type: "video",
     position: {
       mobile: { top: "25%", left: "5%" },
       desktop: { top: "5%", left: "5%" },
@@ -69,6 +72,7 @@ const IMAGES = [
   {
     src: webdesignImg,
     alt: "Web Design",
+    type: "image",
     position: {
       mobile: { top: "15%", left: "10%" },
       desktop: { top: "5%", left: "45%" },
@@ -77,6 +81,7 @@ const IMAGES = [
   {
     src: webdevImg,
     alt: "Web Development",
+    type: "image",
     position: {
       mobile: { top: "35%", left: "5%" },
       desktop: { top: "5%", left: "60%" },
@@ -106,13 +111,13 @@ export default function HeroImages({ activeIndex }: HeroImagesProps) {
   return (
     <div className="relative w-full h-full">
       <AnimatePresence mode="sync">
-        {IMAGES.map((image, index) => {
+        {IMAGES.map((media, index) => {
           // Decide which position to use
           const { top, left } = isMobile
-            ? image.position.mobile
-            : image.position.desktop;
+            ? media.position.mobile
+            : media.position.desktop;
 
-          // Only animate and show the active image, but keep all rendered
+          // Only animate and show the active media, but keep all rendered
           if (index === activeIndex) {
             return (
               <motion.div
@@ -122,31 +127,48 @@ export default function HeroImages({ activeIndex }: HeroImagesProps) {
                   top: top,
                   left: left,
                   maxHeight: "85%",
-
-                  // backgroundColor: "#f0f0f0",
                 }}
                 initial="enter"
                 animate="visible"
                 exit="exit"
                 variants={maskVariants}
               >
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  width={0}
-                  height={0}
-                  sizes="100vw"
-                  style={{
-                    width: "auto",
-                    height: "auto",
-                    maxWidth: "100%",
-                    maxHeight: "100%",
-                    objectFit: "contain",
-                    position: "relative",
-                  }}
-                  // Optional: add blur while loading
-                  placeholder="blur"
-                />
+                {media.type === "video" ? (
+                  <video
+                    src={
+                      typeof media.src === "string" ? media.src : media.src.src
+                    }
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    style={{
+                      width: "auto",
+                      height: "auto",
+                      maxWidth: "100%",
+                      maxHeight: "100%",
+                      objectFit: "contain",
+                      position: "relative",
+                    }}
+                  />
+                ) : (
+                  <Image
+                    src={media.src}
+                    alt={media.alt}
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                    style={{
+                      width: "auto",
+                      height: "auto",
+                      maxWidth: "100%",
+                      maxHeight: "100%",
+                      objectFit: "contain",
+                      position: "relative",
+                    }}
+                    placeholder="blur"
+                  />
+                )}
                 <motion.span
                   variants={numberVariants}
                   className="absolute -top-3.5 lg:-top-5 left-0 text-[10px] lg:text-xs text-accent -z-[1]"
@@ -156,7 +178,7 @@ export default function HeroImages({ activeIndex }: HeroImagesProps) {
               </motion.div>
             );
           }
-          // Add this to pre-render all other images but keep them hidden
+          // Pre-render other media but keep them hidden
           return (
             <div
               key={`preload-${index}`}
@@ -165,19 +187,28 @@ export default function HeroImages({ activeIndex }: HeroImagesProps) {
                 opacity: 0,
                 pointerEvents: "none",
                 zIndex: -1,
-                width: 1, // Very small but still rendered
+                width: 1,
                 height: 1,
                 overflow: "hidden",
               }}
             >
-              <Image
-                src={image.src}
-                alt={`Preload ${image.alt}`}
-                width={0}
-                height={0}
-                priority={index === (activeIndex + 1) % IMAGES.length} // Prioritize next image
-                sizes="100vw"
-              />
+              {media.type === "video" ? (
+                <video
+                  src={
+                    typeof media.src === "string" ? media.src : media.src.src
+                  }
+                  preload="auto"
+                />
+              ) : (
+                <Image
+                  src={media.src}
+                  alt={`Preload ${media.alt}`}
+                  width={0}
+                  height={0}
+                  priority={index === (activeIndex + 1) % IMAGES.length}
+                  sizes="100vw"
+                />
+              )}
             </div>
           );
         })}

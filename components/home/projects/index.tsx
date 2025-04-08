@@ -37,8 +37,10 @@ const ProjectsSection = () => {
             title={project.title}
             description={project.description}
             tags={project.tags}
-            images={project.images}
+            media={project.media}
             slug={project.slug}
+            locked={project.locked}
+            externalLink={project.externalLink}
           />
         ))}
       </div>
