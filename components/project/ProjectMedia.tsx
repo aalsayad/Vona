@@ -93,6 +93,7 @@ const ProjectMedia = ({ project }: { project: Project }) => {
                   src={media.src}
                   alt={project.title || "Project image"}
                   className="w-full h-auto"
+                  placeholder="blur"
                 />
               )}
 
